@@ -1,9 +1,7 @@
 const React = require('react');
 
 function NavBar({ user }) {
-  return (
-      );
+  return <div>Nav Bar Here</div>;
 }
-
 
 module.exports = NavBar;

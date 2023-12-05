@@ -1,7 +1,7 @@
 const React = require('react');
 const NavBar = require('./components/NavBar.jsx');
 
-function Layout({ children, user }) {
+function Layout({ children, user, title }) {
   return (
     <html lang="en">
       <head>
@@ -15,7 +15,8 @@ function Layout({ children, user }) {
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
           crossOrigin="anonymous"
         />
-        <title>React SSR</title>
+        <script defer src="/js/map.js"></script>
+        <title>{title}</title>
       </head>
       <body>
         <header>
