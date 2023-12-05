@@ -1,4 +1,11 @@
 const apiRouter = require('express').Router();
 
+const reviewRouter = require('./reviewRouter');
 
-module.exports = apiRouter
+
+
+apiRouter.use('/review', reviewRouter);
+
+
+
+module.exports = apiRouter;

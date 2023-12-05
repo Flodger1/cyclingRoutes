@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js --ext js,jsx --ignore sessions"
+    "dev": "nodemon src/app.js --ext js,jsx --ignore sessions"
   },
   "keywords": [],
   "author": "",
