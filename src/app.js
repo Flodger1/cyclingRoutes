@@ -1,8 +1,8 @@
 require('dotenv').config();
 require('@babel/register');
 
-// const indexRouter = require('./routers/indexRouter')
-// const apiRouter = require('./routers/apiRouter')
+const indexRouter = require('./routers/indexRouter')
+const apiRouter = require('./routers/apiRouter')
 
 
 const express = require('express');

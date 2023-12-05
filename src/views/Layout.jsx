@@ -30,5 +30,4 @@ function Layout({ children, user }) {
     </html>
   );
 }
-
 module.exports = Layout;
