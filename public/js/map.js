@@ -23,19 +23,19 @@ async function initMap() {
   });
 
   google.maps.event.addListener(pointA, 'dragend', function (evt) {
-    document.getElementById('latitudeA').value = evt.latLng.lat().toFixed(6);
-    document.getElementById('longitudeA').value = evt.latLng.lng().toFixed(6);
+    document.getElementById('latitudeA').value = evt.latLng.lat();
+    document.getElementById('longitudeA').value = evt.latLng.lng();
   });
 
   google.maps.event.addListener(pointB, 'dragend', function (evt) {
-    document.getElementById('latitudeB').value = evt.latLng.lat().toFixed(6);
-    document.getElementById('longitudeB').value = evt.latLng.lng().toFixed(6);
+    document.getElementById('latitudeB').value = evt.latLng.lat();
+    document.getElementById('longitudeB').value = evt.latLng.lng();
   });
 }
 
 initMap();
 
-routeForm.addEventListener('submit', async (e) => {
+routeForm?.addEventListener('submit', async (e) => {
   try {
     e.preventDefault();
     const formData = {
