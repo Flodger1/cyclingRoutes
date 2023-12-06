@@ -1,38 +1,36 @@
 const id = window.location.pathname.split('/')[2];
 
 function initMap(pointA, pointB) {
-  const pointA = [-25.437432393550495, 132.0602353515625];
-  const pointB = [-25.437432393550495, 132.0602353515625];
   const myOptions = {
-      zoom: 7,
-      center: pointA,
-    },
-    map = new google.maps.Map(document.getElementById('map'), myOptions),
-    // Instantiate a directions service.
-    directionsService = new google.maps.DirectionsService(),
-    directionsDisplay = new google.maps.DirectionsRenderer({
-      map: map,
-    }),
-    markerA = new google.maps.Marker({
-      position: pointA,
-      title: 'point A',
-      label: 'A',
-      map: map,
-    }),
-    markerB = new google.maps.Marker({
-      position: pointB,
-      title: 'point B',
-      label: 'B',
-      map: map,
-    });
+    zoom: 7,
+    center: pointA,
+  };
+  const map = new google.maps.Map(document.getElementById('map'), myOptions);
+  // Instantiate a directions service.
+  const directionsService = new google.maps.DirectionsService();
+  const directionsDisplay = new google.maps.DirectionsRenderer({
+    map: map,
+  });
+  const markerA = new google.maps.Marker({
+    position: pointA,
+    title: 'point A',
+    label: 'A',
+    map: map,
+  });
+  const markerB = new google.maps.Marker({
+    position: pointB,
+    title: 'point B',
+    label: 'B',
+    map: map,
+  });
 
   // get route from A to B
-  // calculateAndDisplayRoute(
-  //   directionsService,
-  //   directionsDisplay,
-  //   pointA,
-  //   pointB
-  // );
+  calculateAndDisplayRoute(
+    directionsService,
+    directionsDisplay,
+    pointA,
+    pointB
+  );
 }
 
 function calculateAndDisplayRoute(
@@ -52,6 +50,9 @@ function calculateAndDisplayRoute(
     function (response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
+        document.querySelector(
+          '.text__info'
+        ).children[1].innerText = `Длина маршрута: ${directionsDisplay.directions.routes[0].legs[0].distance.text}`;
       } else {
         window.alert('Directions request failed due to ' + status);
       }
@@ -62,9 +63,14 @@ function calculateAndDisplayRoute(
 fetch(`/api/routes/${id}`, { method: 'GET' })
   .then((response) => response.json())
   .then((data) => {
-    const pointA = [Number(data.mapData[0][0]), Number(data.mapData[0][1])];
-    const pointB = [Number(data.mapData[1][0]), Number(data.mapData[1][1])];
-    //console.log(pointA);
+    const pointA = {
+      lat: Number(data.mapData[0][0]),
+      lng: Number(data.mapData[0][1]),
+    };
+    const pointB = {
+      lat: Number(data.mapData[1][0]),
+      lng: Number(data.mapData[1][1]),
+    };
     initMap(pointA, pointB);
   })
   .catch((err) => console.log(err));

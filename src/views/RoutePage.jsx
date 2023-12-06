@@ -3,6 +3,7 @@ const Layout = require('./Layout');
 
 const RoutePage = ({ route, rate, reviews, user }) => (
   <Layout user={user}>
+    {/* <div id="map"></div> */}
     <div className="route__wrapper">
       <h2>{route.routName}</h2>
       <div className="rout__info">
@@ -13,10 +14,14 @@ const RoutePage = ({ route, rate, reviews, user }) => (
           <p>Автор: {`${route.User.userName}`}</p>
           <p>Оценка: {`${rate}`}</p>
         </div>
-        <div id="map"></div>
-        {/* <div id="map" style={{ height: '500px' }} className="map__info">
+
+        <div
+          id="map"
+          style={{ height: '500px', width: '600px' }}
+          className="map__info"
+        >
           <img src="#" alt="тут карта"></img>
-        </div> */}
+        </div>
       </div>
       {user && user.id !== route.userId && (
         <div className="feedback__containetr">
