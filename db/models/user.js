@@ -5,7 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Rout, {
         foreignKey: 'userId',
+<<<<<<< HEAD
       });
+=======
+      })
+>>>>>>> b71029ecd21b922d75cf7727b6647a7e47d3292f
       this.hasMany(models.Review, {
         foreignKey: 'userId',
       });
