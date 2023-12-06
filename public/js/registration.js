@@ -29,9 +29,9 @@ registerForm?.addEventListener("submit", async (event) => {
       event.target.email.value = "";
       event.target.password.value = "";
       registrationText.innerText = "Пользователь успешно зарегистрирован";
-      //   setTimeout(() => {
-      //     window.location.href = 'http://localhost:3000/';
-      //   }, 1500);
+        setTimeout(() => {
+          window.location.href = 'http://localhost:3000/';
+        }, 1500);
     } else {
       registrationText.innerText = "Пользователь с таким email уже существует";
       setTimeout(() => {

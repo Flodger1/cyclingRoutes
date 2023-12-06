@@ -9,9 +9,9 @@ const PersonalPage = require("../views/PersonalPage");
 
 indexRouter.get('/profile', async (req, res) => {
   // get user from session
-  const id = 1;
-  const usersRoutes = await Rout.findAll({ where: { id } });
-  renderTemplate(PersonalPage, { usersRoutes, title: `username` }, res);
+  const { user } = req.session;
+  const usersRoutes = await Rout.findAll({ where: { userId: user.id } });
+  renderTemplate(PersonalPage, { user, usersRoutes, title: `username` }, res);
 });
 
 
