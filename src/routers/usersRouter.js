@@ -52,6 +52,24 @@ userRouter.post('/login', async (req, res) => {
         console.log(error);
         res.sendStatus(400)
     }
-})
+});
+
+
+userRouter.get('/logout', (req, res) => {
+    try {
+      req.session.destroy((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.clearCookie('mySession');
+          res.json({msg:'Success'})
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(400);
+    }
+});
+
 
 module.exports = userRouter;
