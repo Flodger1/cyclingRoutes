@@ -12,11 +12,11 @@ function NavBar({ user }) {
         </button>
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item"><a className="nav-link" href="/#">Главная</a></li>
+            <li className="nav-item"><a className="nav-link" href="/">Главная</a></li>
             { user ? (
               <>
                 <li className="nav-item"><a className="nav-link" href="/profile">Странник {user.name}</a></li>
-                <li className="nav-item"><a className="nav-link logout__link" href="/#">Выйти</a></li>
+                <li className="nav-item"><a className="nav-link logout__link" href="/">Выйти</a></li>
               </>
             ) : (
               <>

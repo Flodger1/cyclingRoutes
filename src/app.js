@@ -34,8 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), 'public/')));
 
-app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/', indexRouter);
 
 app.get('/*', (req, res) => {
   res.redirect('/');

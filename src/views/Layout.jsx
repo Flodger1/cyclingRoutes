@@ -33,7 +33,6 @@ function Layout({ children, user, title }) {
           defer
           src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`}
         ></script>
-        <script src="/js/map.js"></script>
         <script src="/js/logout.js"></script>
       </body>
     </html>

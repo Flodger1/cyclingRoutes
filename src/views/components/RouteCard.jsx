@@ -6,16 +6,22 @@ const RouteCard = ({ route }) => {
 //     // Логика форматирования mapData
 //     return "Map Data Placeholder";
 //   };
-
+console.log(route);
   return (
-    <div className="card m-2" style={{ width: "18rem" }}>
+    <div className="card m-2" style={{ width: "300px" }}>
       <div className="card-body">
         <h5 className="card-title">{route.routName}</h5>
-        <p className="card-text">Создатель: {route['User.userName']}</p>
-        <p className="card-text">Местоположение: {route.location}</p>
+      <div className="text__info">
+        <p className="card-text">Местоположение: {`${route.location}`}</p>
+        <p className="card-text">Длина маршрута: ... км</p>
+        <br />
+        <p>Автор: {route.User.userName}</p>
+        <p>Оценка: {`${route.averageRating}`}</p>
+        {/* <p>Оценка: {route.Ratings.length ? ((route.Ratings.reduce((acc, el) => acc + el.value, 0))/route.Ratings.length).toFixed(1) : ' - '}</p> */}
         <a href={`/rout/${route.id}`} className="btn btn-primary">
           Подробнее
         </a>
+      </div>
       </div>
     </div>
   );
