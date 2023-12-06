@@ -1,0 +1,25 @@
+.rout__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+}
+
+.route__wrapper,
+.feedback__containetr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.rating__block,
+.review__block,
+.rout__info,
+.review__item {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 500px;
+}

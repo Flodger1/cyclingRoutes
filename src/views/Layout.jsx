@@ -22,7 +22,7 @@ function Layout({ children, user }) {
           <NavBar user={user} />
         </header>
         <main>
-          <div className="d-flex flex-column align-items-center">
+          <div className="d-flex flex-column align-items-center ">
             {children}
           </div>
         </main>
