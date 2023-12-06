@@ -5,70 +5,29 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
   return (
     <Layout user={user} title={title}>
       <div className="main-container">
-        <div
-          className="row map-container"
-          id="map"
-          style={{ height: '500px' }}
-        ></div>
-        {/* <div className="row">
-          <span>Point A</span>
-          <div className="col-6">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Longitude"
-              name="longitude"
-              id="longitudeA"
-              readOnly
-            />
-          </div>
-
-          <div className="col-6">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Latitude "
-              name="latitude"
-              id="latitudeA"
-              readOnly
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <span>Point B</span>
-          <div className="col-6">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Longitude"
-              name="longitude"
-              id="longitudeB"
-              readOnly
-            />
-          </div>
-
-          <div className="col-6">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Latitude "
-              name="latitude"
-              id="latitudeB"
-              readOnly
-            />
-          </div>
-        </div> */}
-
+        <div className="row" id="map"></div>
         <form className="row g-3 route-form">
+          <div className="row">
+            <div className="col">
+              <span>Название</span>
+              <label className="visually-hidden">Password</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Название"
+                name="routName"
+              />
+            </div>
+          </div>
+
           <div className="row">
             <span>Point A</span>
             <div className="col-6">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Longitude"
-                name="longitude"
+                placeholder="Долгота"
+                name="Longitude"
                 id="longitudeA"
                 readOnly
               />
@@ -78,7 +37,7 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Latitude "
+                placeholder="Широта"
                 name="latitude"
                 id="latitudeA"
                 readOnly
@@ -92,7 +51,7 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Longitude"
+                placeholder="Долгота"
                 name="longitude"
                 id="longitudeB"
                 readOnly
@@ -103,25 +62,21 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Latitude "
+                placeholder="Широта"
                 name="latitude"
                 id="latitudeB"
                 readOnly
               />
             </div>
           </div>
-          <div className="col-auto">
-            <label className="visually-hidden">Password</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Route Name"
-              name="routName"
-            />
-          </div>
-          <div className="col-auto">
-            <button type="submit" className="btn btn-primary mb-3">
-              Add
+
+          <div className="row">
+            <button
+              type="submit"
+              className="btn btn-primary mb-3"
+              id="add-route-btn"
+            >
+              Добавить маршрут
             </button>
           </div>
         </form>
