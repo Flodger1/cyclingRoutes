@@ -71,6 +71,7 @@ fetch(`/api/routes/${id}`, { method: 'GET' })
       lat: Number(data.mapData[1][0]),
       lng: Number(data.mapData[1][1]),
     };
+    console.log(pointA, pointB);
     initMap(pointA, pointB);
   })
   .catch((err) => console.log(err));

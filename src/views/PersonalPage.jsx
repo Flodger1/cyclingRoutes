@@ -10,7 +10,6 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
           <div className="row">
             <div className="col">
               <span>Название</span>
-              <label className="visually-hidden">Password</label>
               <input
                 type="text"
                 className="form-control"
@@ -21,7 +20,24 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
           </div>
 
           <div className="row">
-            <span>Point A</span>
+            <div className="col-5 duration-distance-container">
+              <h4>
+                <i className="bi bi-arrows"></i>
+                {'  '}
+              </h4>
+              <span className="distance">0 км</span>
+            </div>
+            <div className="col-5 duration-distance-container">
+              <h4>
+                <i className="bi bi-clock"></i>
+                {'  '}
+              </h4>
+              <span className="duration-time">0 час. 0 мин.</span>
+            </div>
+          </div>
+
+          <div className="row">
+            <span>Откуда</span>
             <div className="col-6">
               <input
                 type="text"
@@ -32,7 +48,6 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
                 readOnly
               />
             </div>
-
             <div className="col-6">
               <input
                 type="text"
@@ -43,10 +58,18 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
                 readOnly
               />
             </div>
+            <br /> <br />
+            <div className="col">
+              <input
+                type="text"
+                className="form-control start-address"
+                placeholder="Откуда"
+              />
+            </div>
           </div>
 
           <div className="row">
-            <span>Point B</span>
+            <span>Куда</span>
             <div className="col-6">
               <input
                 type="text"
@@ -57,7 +80,7 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
                 readOnly
               />
             </div>
-
+            <br /> <br />
             <div className="col-6">
               <input
                 type="text"
@@ -65,7 +88,13 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
                 placeholder="Широта"
                 name="latitude"
                 id="latitudeB"
-                readOnly
+              />
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                className="form-control end-address"
+                placeholder="Куда"
               />
             </div>
           </div>

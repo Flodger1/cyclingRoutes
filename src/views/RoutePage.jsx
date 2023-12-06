@@ -3,7 +3,6 @@ const Layout = require('./Layout');
 
 const RoutePage = ({ route, rate, reviews, user }) => (
   <Layout user={user}>
-    {/* <div id="map"></div> */}
     <div className="route__wrapper">
       <h2>{route.routName}</h2>
       <div className="rout__info">
