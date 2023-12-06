@@ -2,11 +2,12 @@ const indexRouter = require('express').Router();
 const renderTemplate = require('../lib/renderTemplate');
 const {Rout, User, Rating, Review} = require('../../db/models');
 const RoutePage = require('../views/RoutePage');
+const MainPage = require('../views/MainPage');
 
 
 // indexRouter.get('/', async (req, res) => {
 //     console.log('Привет, все работает');
-//     res.end();
+//     renderTemplate(MainPage, null, res);
 // });
 
 
