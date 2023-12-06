@@ -16,7 +16,7 @@ function NavBar({ user }) {
             { user ? (
               <>
                 <li className="nav-item"><a className="nav-link" href="/profile">Странник {user.name}</a></li>
-                <li className="nav-item"><a className="nav-link" href="/#">Выйти</a></li>
+                <li className="nav-item"><a className="nav-link logout__link" href="/#">Выйти</a></li>
               </>
             ) : (
               <>

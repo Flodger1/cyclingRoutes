@@ -38,9 +38,9 @@ loginForm?.addEventListener("submit", async (event) => {
         event.target.email.value = "";
         event.target.password.value = "";
         loginText.innerText = "Вход выполнен успешно";
-        // setTimeout(() => {
-        //   window.location.href = "http://localhost:3000/main";
-        // }, 1000);
+        setTimeout(() => {
+          window.location.href = "http://localhost:3000/";
+        }, 1000);
       }
     }
   } catch (error) {
