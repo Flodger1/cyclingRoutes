@@ -11,7 +11,7 @@ const RoutePage = require('../views/RoutePage');
 
 
 indexRouter.get('/rout/:id', async (req, res) => {
-    // const { user } = req.session;
+    const { user } = req.session;
     const { id } = req.params;
     const routeData = await Rout.findByPk(id, {include: [{ model: User }] });
     const route = routeData.get({ plain: true });
@@ -23,7 +23,7 @@ indexRouter.get('/rout/:id', async (req, res) => {
     console.log("ALL ROUT REVIEWS*******", reviews );
     console.log("ONE ROUT*******", route );
     console.log("RATE OF ROUT*******", rate );
-    renderTemplate(RoutePage, {route, rate, reviews}, res);
+    renderTemplate(RoutePage, {route, rate, reviews, user}, res);
 });
 
 

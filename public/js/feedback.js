@@ -40,6 +40,8 @@ reviewForm?.addEventListener('submit', async (event) => {
             setTimeout(() => {
                 infoText.innerText = '';
             }, 1500)
+        }  else if (response.status === 403) {
+            console.log("У пользователя недостаточно прав!");
         } else {
             infoText.innerText = "Произошла ошибка, попробуйте еще раз.";
             setTimeout(() => {
@@ -72,8 +74,10 @@ ratingForm?.addEventListener('submit', async (event) => {
         if (response.status === 200) {
             console.log("NEW RATE WAS ADDED******");
             window.location.reload(true);
-        }    
+        } else if (response.status === 403) {
+            console.log("У пользователя недостаточно прав!");
+        } 
     } catch (error) {
-        console.error(error);        
+        console.error(error);    
     }
 })

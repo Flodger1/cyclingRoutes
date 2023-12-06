@@ -1,8 +1,8 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-const RoutePage = ({route, rate, reviews}) => (
-    <Layout> 
+const RoutePage = ({route, rate, reviews, user}) => (
+    <Layout user={user}> 
       <div className="route__wrapper">      
           <h2>{route.routName}</h2>
           <div className='rout__info' >
@@ -16,7 +16,7 @@ const RoutePage = ({route, rate, reviews}) => (
             <div className='map__info'><img src='#' alt='тут карта'></img></div>            
         </div>
         {/* //! вставить проверку на авторизованного юзера */}
-        <div className="feedback__containetr">
+        {user && (user.id !== route.userId) && (<div className="feedback__containetr">
           <div className="rating__block">
             <form className="rating__form" data-id={`${route.id}`}>
               <h3>Оцените маршрут</h3>
@@ -32,12 +32,12 @@ const RoutePage = ({route, rate, reviews}) => (
           <div className="review__block">
             <form className="review__form" data-id={`${route.id}`}>
               <h3>Оставьте отзыв:</h3>
-              <textarea cols="35" rows="10" name="text" placeholder="Текст отзыва..."></textarea><br/>
+              <textarea cols="50" rows="7" name="text" placeholder="Текст отзыва..."></textarea><br/>
               <button type="submit" className="review__btn">Отправить отзыв</button>
             </form>
             <div className="info__text"></div>
           </div>
-        </div>
+        </div>)}
         <div className='reviews__container'>
           {reviews.map((el) => (
             <div className="review__item" key={`${el.id}`}>

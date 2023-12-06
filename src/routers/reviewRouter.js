@@ -1,24 +1,27 @@
 const reviewRouter = require('express').Router();
-const {Review} = require('../../db/models');
+const {Review, Rout} = require('../../db/models');
 
 
 reviewRouter.post('/', async (req, res) => {
     const { text, routId } = req.body;
-    //! const { user } = req.session;
+    const { user } = req.session;
     try {
-        const reviewData = await Review.create({routId, userId: 1, text });
+        const route = await Rout.findByPk(routId, {raw: true});
+        if (user && (user.id !== route.userId)) {
+        const reviewData = await Review.create({routId, userId: user.id, text });
         const review = reviewData.get({ plain: true });
         console.log('REVIEW WAS CREATED', review);
-        review.userName = "Какой-то автор";
-        //! review.userName = user.userName;
-        res.json(review);        
+        // review.userName = "Какой-то автор";
+        review.userName = user.userName;
+        res.json(review);
+        } else {
+            res.sendStatus(403);
+        }  
     } catch (error) {
         console.log(error);
         res.sendStatus(400);  
     }
-})
-
-
+});
 
 
 

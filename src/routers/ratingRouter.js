@@ -1,17 +1,21 @@
 const ratingRouter = require('express').Router();
-const {Rating} = require('../../db/models');
+const {Rating, Rout} = require('../../db/models');
 
 ratingRouter.post('/', async (req, res) => {
     const { value, routId } = req.body;
-    //! const { user } = req.session;
+    const { user } = req.session;
     try {
+        const route = await Rout.findByPk(routId, {raw: true});
+        if (user && (user.id !== route.userId)) {
         const rate = await Rating.create({routId, value });
-        // const review = reviewData.get({ plain: true });
         console.log('RATING WAS CREATED**', rate);
-        res.sendStatus(200);        
+        res.sendStatus(200);
+        } else {
+            res.sendStatus(403);
+        }      
     } catch (error) {
         console.log(error);
-        res.sendStatus(400);  
+        res.sendStatus(400);
     }
 })
 
