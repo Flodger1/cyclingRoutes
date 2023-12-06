@@ -126,6 +126,7 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
           </div>
         </form>
       </div>
+      <script src="/js/map.js"></script>
     </Layout>
   );
 };

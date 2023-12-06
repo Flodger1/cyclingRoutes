@@ -9,7 +9,7 @@ function Layout({ children, user, title }) {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* <link rel="stylesheet" href="/css/style.css" /> */}
+        <link rel="stylesheet" href="/css/style.css" />
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -33,7 +33,6 @@ function Layout({ children, user, title }) {
           defer
           src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`}
         ></script>
-        <script src="/js/map.js"></script>
       </body>
     </html>
   );
