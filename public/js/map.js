@@ -30,6 +30,7 @@ async function initMap() {
   google.maps.event.addListener(pointB, 'dragend', function (evt) {
     document.getElementById('latitudeB').value = evt.latLng.lat().toFixed(6);
     document.getElementById('longitudeB').value = evt.latLng.lng().toFixed(6);
+    console.log(evt);
   });
 }
 
