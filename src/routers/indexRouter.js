@@ -8,10 +8,9 @@ const Registration = require('../views/Registration');
 const PersonalPage = require('../views/PersonalPage');
 
 indexRouter.get('/profile', async (req, res) => {
-  // const { user } = req.session;
-  const userId = 1;
-  const usersRoutes = await Rout.findAll({ where: { userId } });
-  renderTemplate(PersonalPage, { usersRoutes, title: `username` }, res);
+  const { user } = req.session;
+  const usersRoutes = await Rout.findAll({ where: { userId: user.id } });
+  renderTemplate(PersonalPage, { user, usersRoutes, title: user.name }, res);
 });
 
 indexRouter.get('/rout/:id', async (req, res) => {

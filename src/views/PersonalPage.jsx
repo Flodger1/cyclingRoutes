@@ -4,6 +4,40 @@ const Layout = require('./Layout.jsx');
 module.exports = function PersonalPage({ user, userRoutes, title }) {
   return (
     <Layout user={user} title={title}>
+      <div className="profile-container">
+        <div className="profile-info">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="200"
+            height="200"
+            fill="currentColor"
+            className="bi bi-person"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
+          </svg>
+          <div className="profile">
+            <h5 className="card-title">{user ? user.name : 'None'}</h5>
+            <h6 className="card-subtitle mb-2 text-body-secondary">
+              {user ? user.email : 'None'}
+            </h6>
+            <span>
+              <button className="add-btn"> add new route</button>
+            </span>
+          </div>
+        </div>
+        <div className="stats-info">
+          <h1>372 KM</h1>
+          <span>was traveled</span>
+          <br />
+          <h2>0</h2>
+          <span>routes were added</span>
+          <h2>0</h2>
+          <span>liked routes</span>
+        </div>
+      </div>
+
+      <div className="user-routes-container"></div>
       <div className="main-container">
         <div className="row" id="map"></div>
         <form className="row g-3 route-form">
@@ -111,6 +145,7 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
         </form>
       </div>
       <script src="/js/map.js"></script>
+      <script src="/js/newroute.js"></script>
     </Layout>
   );
 };
