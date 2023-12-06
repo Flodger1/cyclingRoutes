@@ -6,7 +6,7 @@ const RouteCard = ({ route }) => {
 //     // Логика форматирования mapData
 //     return "Map Data Placeholder";
 //   };
-console.log(route);
+
   return (
     <div className="card m-2" style={{ width: "300px" }}>
       <div className="card-body">
@@ -16,8 +16,7 @@ console.log(route);
         <p className="card-text">Длина маршрута: ... км</p>
         <br />
         <p>Автор: {route.User.userName}</p>
-        <p>Оценка: {`${route.averageRating}`}</p>
-        {/* <p>Оценка: {route.Ratings.length ? ((route.Ratings.reduce((acc, el) => acc + el.value, 0))/route.Ratings.length).toFixed(1) : ' - '}</p> */}
+        <p>Оценка: {route.dataValues.averageRating ? `${Number(route.dataValues.averageRating).toFixed(1)}` : ' - '}</p>
         <a href={`/rout/${route.id}`} className="btn btn-primary">
           Подробнее
         </a>

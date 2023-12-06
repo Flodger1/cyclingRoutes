@@ -11,16 +11,6 @@ const PersonalPage = require("../views/PersonalPage");
 indexRouter.get("/", async (req, res) => {
     try {
         const { user } = req.session;
-        // const routes = await Rout.findAll({
-        //     attributes: ['id', 'userId', 'routName', 'location', 'mapData', 'createdAt', 'updatedAt'],
-        //     include: [
-        //         {
-        //             model: User,
-        //             attributes: ["userName", 'id'], //* имя пользователя
-        //         }, {model: Rating, attributes: ["value", 'id'], }
-        //     ], order:  [[sequelize.fn('AVG', sequelize.col('value')), 'DESC']] ,
-        //      group: ['Rout.id', 'User.userName', 'User.id', 'Rating.id', 'userId', 'routName', 'location', 'mapData', 'Rout.createdAt', 'Rout.updatedAt']
-        // });
         const routes = await Rout.findAll({
             attributes: [
               'id', 'userId', 'routName', 'location', 'mapData', 
@@ -40,8 +30,7 @@ indexRouter.get("/", async (req, res) => {
             group: ['Rout.id', 'User.id', 'Ratings.routId'],
             order: [[Sequelize.fn('AVG', Sequelize.col('Ratings.value')), 'DESC']]
           });
-
-        // console.log(routes);
+        //   console.log('***********', Object.keys(routes[6]),'***********', routes[6].dataValues.averageRating);
         // res.send(routes);
          renderTemplate(MainPage, { user, routes }, res);
     } catch (error) {
