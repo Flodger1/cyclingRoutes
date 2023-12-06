@@ -1,39 +1,66 @@
-// const L = require('leaflet');
-// require('leaflet-routing-machine');
+const routeForm = document.querySelector('.route-form');
 
-// let map = document.getElementById('map');
-// map = L.map('map').setView([28.238, 83.9956], 11);
-// const mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
-// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-//   attribution: 'Leaflet &copy; ' + mapLink + ', contribution',
-//   maxZoom: 18,
-// }).addTo(map);
+async function initMap() {
+  const myLatLng = { lat: -25.363, lng: 131.044 };
+  const { Map } = await google.maps.importLibrary('maps');
+  map = new Map(document.getElementById('map'), {
+    center: myLatLng,
+    zoom: 8,
+  });
 
-// var taxiIcon = L.icon({
-//   iconUrl: 'img/taxi.png',
-//   iconSize: [70, 70],
-// });
+  const pointA = new google.maps.Marker({
+    position: myLatLng,
+    map,
+    title: 'Hello World!',
+    draggable: true,
+  });
 
-// const marker = L.marker([28.238, 83.9956], { icon: taxiIcon }).addTo(map);
+  const pointB = new google.maps.Marker({
+    position: myLatLng,
+    map,
+    title: 'Hello World!',
+    draggable: true,
+  });
 
-// map.on('click', function (e) {
-//   console.log(e);
-//   const newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-//   L.Routing.control({
-//     waypoints: [
-//       L.latLng(28.238, 83.9956),
-//       L.latLng(e.latlng.lat, e.latlng.lng),
-//     ],
-//   })
-//     .on('routesfound', function (e) {
-//       var routes = e.routes;
-//       console.log(routes);
+  google.maps.event.addListener(pointA, 'dragend', function (evt) {
+    document.getElementById('latitudeA').value = evt.latLng.lat().toFixed(6);
+    document.getElementById('longitudeA').value = evt.latLng.lng().toFixed(6);
+  });
 
-//       e.routes[0].coordinates.forEach(function (coord, index) {
-//         setTimeout(function () {
-//           marker.setLatLng([coord.lat, coord.lng]);
-//         }, 100 * index);
-//       });
-//     })
-//     .addTo(map);
-// });
+  google.maps.event.addListener(pointB, 'dragend', function (evt) {
+    document.getElementById('latitudeB').value = evt.latLng.lat().toFixed(6);
+    document.getElementById('longitudeB').value = evt.latLng.lng().toFixed(6);
+  });
+}
+
+initMap();
+
+routeForm.addEventListener('submit', async (e) => {
+  try {
+    e.preventDefault();
+    const formData = {
+      routName: e.target.routName.value,
+      mapData: [
+        [e.target.latitudeA.value, e.target.longitudeA.value],
+        [e.target.latitudeB.value, e.target.longitudeB.value],
+      ],
+    };
+    const response = await fetch('/api/routes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.status === 200) {
+      e.target.latitudeA.value = '';
+      e.target.longitudeA.value = '';
+      e.target.latitudeB.value = '';
+      e.target.longitudeB.value = '';
+      e.target.routName.value = '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});

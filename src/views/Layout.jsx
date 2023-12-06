@@ -1,5 +1,6 @@
 const React = require('react');
 const NavBar = require('./components/NavBar.jsx');
+const API_KEY = process.env.API_KEY;
 
 function Layout({ children, user, title }) {
   return (
@@ -15,7 +16,6 @@ function Layout({ children, user, title }) {
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
           crossOrigin="anonymous"
         />
-        <script defer src="/js/map.js"></script>
         <title>{title}</title>
       </head>
       <body>
@@ -27,8 +27,16 @@ function Layout({ children, user, title }) {
             {children}
           </div>
         </main>
+
+        <script
+          async
+          defer
+          src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`}
+        ></script>
+        <script src="/js/map.js"></script>
       </body>
     </html>
   );
 }
+
 module.exports = Layout;
