@@ -15,7 +15,6 @@ const RoutePage = ({route, rate, reviews, user}) => (
             </div>
             <div className='map__info'><img src='#' alt='тут карта'></img></div>            
         </div>
-        {/* //! вставить проверку на авторизованного юзера */}
         {user && (user.id !== route.userId) && (<div className="feedback__containetr">
           <div className="rating__block">
             <form className="rating__form" data-id={`${route.id}`}>
