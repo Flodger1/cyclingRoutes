@@ -15,7 +15,7 @@ function NavBar({ user }) {
             <li className="nav-item"><a className="nav-link" href="/#">Главная</a></li>
             { user ? (
               <>
-                <li className="nav-item"><a className="nav-link" href="/#">Странник {user.name}</a></li>
+                <li className="nav-item"><a className="nav-link" href="/profile">Странник {user.name}</a></li>
                 <li className="nav-item"><a className="nav-link" href="/#">Выйти</a></li>
               </>
             ) : (

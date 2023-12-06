@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-=======
+
 .rout__info {
     display: flex;
     flex-direction: row;
@@ -30,4 +29,3 @@
     border-radius: 8px;
     width: 500px;
 }
->>>>>>> b71029ecd21b922d75cf7727b6647a7e47d3292f
