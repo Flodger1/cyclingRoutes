@@ -5,7 +5,7 @@ const RoutePage = ({ route, rate, reviews, user }) => (
   <Layout user={user}>
     <div className="route__wrapper">
       <a href="/" className="tomain__btn">
-        <button type="button" className="btn__my">
+        <button type="button" className="btn__my btnBack">
           Назад
         </button>
       </a>

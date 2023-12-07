@@ -7,7 +7,7 @@ const RouteCard = ({ route }) => {
   //     return "Map Data Placeholder";
   //   };
   return (
-    <div className="card m-2" style={{ width: '300px' }}>
+    <div className="card m-2" style={{ width: '300px', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <div className="card-body">
         <h5 className="card-title">{route.routName}</h5>
         <div className="text__info">

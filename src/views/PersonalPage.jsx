@@ -19,10 +19,12 @@ module.exports = function PersonalPage({ user, usersRoutes, title }) {
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
           </svg>
           <div className="profile">
-            <h5 className="card-title">{user ? user.name : 'None'}</h5>
-            <h6 className="card-subtitle mb-2 text-body-secondary">
+            <h4 className="card-title">{user ? user.name : 'None'}</h4>
+            <br />
+            <h5 className="card-subtitle mb-2 text-body-secondary">
               {user ? user.email : 'None'}
-            </h6>
+            </h5>
+            <br />
             <span>
               <button className="add-btn btn btn-primary">
                 <a href="#add-new-route" className="add-btn">
@@ -33,7 +35,7 @@ module.exports = function PersonalPage({ user, usersRoutes, title }) {
           </div>
         </div>
         <div className="stats-info">
-          <h1>372 KM</h1>
+          <h1>7.5 KM</h1>
           <span>was traveled</span>
           <br />
           <h2>{usersRoutes ? usersRoutes.length : 0}</h2>
