@@ -24,4 +24,14 @@ routeRouter.delete('/:id', async (req, res) => {
   }
 });
 
+routeRouter.get('/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const route = await Rout.findOne({ where: { id } });
+    res.json(route);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 module.exports = routeRouter;

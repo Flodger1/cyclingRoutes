@@ -7,7 +7,7 @@
 .main-container,
 .profile-container {
   width: 1200px;
-  height: 500px;
+  height: 1000px;
   margin: 100px;
   display: flex;
   flex-direction: row;
@@ -41,8 +41,7 @@
   height: 500px;
 }
 
-#add-route-btn,
-#update-route-btn {
+#add-route-btn {
   margin-top: 10px;
   border-radius: 24px;
   width: 350px;
@@ -54,9 +53,6 @@
   font-weight: bold;
 }
 
-#update-route-btn {
-  margin-left: 40px;
-}
 .route-form {
   display: flex;
   flex-direction: column;
