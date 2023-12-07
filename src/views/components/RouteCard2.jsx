@@ -7,7 +7,7 @@ const RouteCard2 = ({ route }) => {
         <h5 className="card-title">{route.routName}</h5>
         <div className="text__info">
           <p className="card-text">Местоположение: {`${route.location}`}</p>
-          <p className="card-text">Длина маршрута: ... км</p>
+          {/* <p className="card-text">Длина маршрута: ... км</p> */}
           <br />
           <p>Автор: {route.User?.userName ? route.User?.userName : 'None'}</p>
           <p>

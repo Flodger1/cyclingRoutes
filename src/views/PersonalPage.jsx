@@ -44,11 +44,11 @@ module.exports = function PersonalPage({ user, usersRoutes, title }) {
       </div>
       <h3>Добавленные Вами маршруты: </h3>
       <div className="user-routes-container">
-        {usersRoutes ? (
+        {usersRoutes.length > 0 ? (
           usersRoutes.map((route) => <RouteCard2 route={route} user={user} />)
         ) : (
           <h2 className="card-title text-center">
-            Вы не добавли ни одного маршрута
+            Вы не добавили ни одного маршрута
           </h2>
         )}
       </div>
@@ -61,13 +61,25 @@ module.exports = function PersonalPage({ user, usersRoutes, title }) {
         <div className="row" id="map"></div>
         <form className="row g-3 route-form">
           <div className="row">
-            <div className="col">
+            <div className="col-6">
               <span>Название</span>
               <input
                 type="text"
                 className="form-control"
                 placeholder="Название"
                 name="routName"
+              />
+            </div>
+
+            <div className="col-6">
+              <span>Местоположение</span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Местоположение"
+                name="location"
+                id="location"
+                readOnly
               />
             </div>
           </div>

@@ -5,8 +5,13 @@ const { Rout } = require('../../db/models');
 routeRouter.post('/', async (req, res) => {
   try {
     const { user } = req.session;
-    const { routName, mapData } = req.body;
-    const isAdded = await Rout.create({ userId: user.id, routName, mapData });
+    const { routName, mapData, location } = req.body;
+    const isAdded = await Rout.create({
+      userId: user.id,
+      routName,
+      mapData,
+      location,
+    });
 
     res.json(isAdded);
   } catch (error) {

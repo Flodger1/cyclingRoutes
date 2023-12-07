@@ -6,13 +6,13 @@ const RouteCard = ({ route }) => {
   //     // Логика форматирования mapData
   //     return "Map Data Placeholder";
   //   };
-   return (
+  return (
     <div className="card m-2" style={{ width: '300px' }}>
       <div className="card-body">
         <h5 className="card-title">{route.routName}</h5>
         <div className="text__info">
           <p className="card-text">Местоположение: {`${route.location}`}</p>
-          <p className="card-text">Длина маршрута: ... км</p>
+          {/* <p className="card-text">Длина маршрута: ... км</p> */}
           <br />
           <p>Автор: {route.User?.userName ? route.User?.userName : 'None'}</p>
           <p>
@@ -21,7 +21,11 @@ const RouteCard = ({ route }) => {
               ? `${Number(route.averageRating).toFixed(1)}`
               : ' NEW '}
           </p>
-          <a href={`/rout/${route.id}`} ><button type="button" className="btn__my">Подробнее</button></a>
+          <a href={`/rout/${route.id}`}>
+            <button type="button" className="btn__my">
+              Подробнее
+            </button>
+          </a>
         </div>
       </div>
     </div>
