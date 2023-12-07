@@ -4,6 +4,25 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+a:hover {
+  text-shadow: 5px 5px 10px rgb(28, 27, 27);
+}
+
+button:hover {
+  text-shadow: 5px 5px 10px rgb(28, 27, 27);
+}
+
+button:active,
+a:active {
+  transform: translate(0px, 2px);
+}
+
 .rout__info {
   display: flex;
   flex-direction: row;
@@ -24,10 +43,25 @@
 .review__block,
 .rout__info,
 .review__item {
-  padding: 10px;
-  border: 2px solid black;
-  border-radius: 8px;
-  width: 800px;
+  padding: 30px;
+  border: 2px solid #5e788765;
+  border-radius: 20px;
+  width: 1000px;
+  font-weight: bold;
+}
+
+label {
+  margin: 10px;
+}
+
+.review__form,
+.review__block,
+.reviews__container,
+.rating__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .tomain__btn {
@@ -46,3 +80,29 @@
 .star:hover {
   color: gold;
 }
+
+.hidden {
+  display: none;
+}
+
+h2 {
+  margin-top: 70px;
+}
+
+textarea {
+  padding: 15px;
+  border: 2px solid #5e788765;
+  border-radius: 20px;
+}
+
+.btn__my {
+  border-radius: 8px;
+  width: 180px;
+  background-color: #5e788765;
+  border-color: #5e788765;
+  color: black;
+  font-size: 18px;
+  padding: 5px;
+}
+
+;

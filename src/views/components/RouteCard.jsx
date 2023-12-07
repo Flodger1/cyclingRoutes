@@ -6,8 +6,7 @@ const RouteCard = ({ route }) => {
   //     // Логика форматирования mapData
   //     return "Map Data Placeholder";
   //   };
-  console.log(route);
-  return (
+   return (
     <div className="card m-2" style={{ width: '300px' }}>
       <div className="card-body">
         <h5 className="card-title">{route.routName}</h5>
@@ -22,9 +21,7 @@ const RouteCard = ({ route }) => {
               ? `${Number(route.averageRating).toFixed(1)}`
               : ' NEW '}
           </p>
-          <a href={`/rout/${route.id}`} className="btn btn-primary">
-            Подробнее
-          </a>
+          <a href={`/rout/${route.id}`} ><button type="button" className="btn__my">Подробнее</button></a>
         </div>
       </div>
     </div>
