@@ -1,13 +1,15 @@
 const reviewRouter = require('express').Router();
 const {Review, Rout} = require('../../db/models');
 
+const isAuth = require('../middleware/isAuth')
 
-reviewRouter.post('/', async (req, res) => {
+
+reviewRouter.post('/',isAuth, async (req, res) => {
     const { text, routId } = req.body;
     const { user } = req.session;
     try {
         const route = await Rout.findByPk(routId, {raw: true});
-        if (user && (user.id !== route.userId)) {
+        if (user.id !== route.userId) {                            //! убрал user --> isAuth
         const reviewData = await Review.create({routId, userId: user.id, text });
         const review = reviewData.get({ plain: true });
         console.log('REVIEW WAS CREATED', review);

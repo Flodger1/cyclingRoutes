@@ -5,7 +5,7 @@ const logoutLink = document.querySelector('.logout__link');
 logoutLink?.addEventListener('click', async (event) => {
     event.preventDefault();
     try {
-        const response = await fetch('api/users/logout');
+        const response = await fetch('/api/users/logout');
         console.log(response);
         if (response.ok) {
             const result = await response.json();
