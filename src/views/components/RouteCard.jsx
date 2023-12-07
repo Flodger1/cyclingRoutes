@@ -16,7 +16,7 @@ const RouteCard = ({ route }) => {
         <p className="card-text">Длина маршрута: ... км</p>
         <br />
         <p>Автор: {route.User.userName}</p>
-        <p>Оценка: {route.dataValues.averageRating ? `${Number(route.dataValues.averageRating).toFixed(1)}` : ' - '}</p>
+        <p>Оценка: {route.dataValues.averageRating ? `${Number(route.dataValues.averageRating).toFixed(1)}` : (' NEW ' )}</p>
         <a href={`/rout/${route.id}`} className="btn btn-primary">
           Подробнее
         </a>

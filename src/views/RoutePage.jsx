@@ -1,6 +1,5 @@
 const React = require('react');
 const Layout = require('./Layout');
-const RouteCard = require('./components/RouteCard');
 
 const RoutePage = ({ route, rate, reviews, user }) => (
   <Layout user={user}>
@@ -69,13 +68,13 @@ const RoutePage = ({ route, rate, reviews, user }) => (
       )}
       <div className="reviews__container">
         <h3>Отзывы:</h3>
-        {reviews.map((el) => (
+        {reviews.length ? (reviews.map((el) => (
           <div className="review__item" key={`${el.id}`}>
             <p>{`${el.text}`}</p>
             <br />
             <p>{`${el.User.userName}`}</p>
           </div>
-        ))}
+        ))) : `Отзывов по этому маршруту пока нет.`}
         <script src="/js/feedback.js"></script>
         <script src="/js/routeMap.js"></script>
       </div>

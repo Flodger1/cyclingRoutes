@@ -1,5 +1,5 @@
 const reviewRouter = require('express').Router();
-const {Review, Rout, User} = require('../../db/models');
+const {Review, Rout} = require('../../db/models');
 
 
 reviewRouter.post('/', async (req, res) => {
@@ -11,7 +11,6 @@ reviewRouter.post('/', async (req, res) => {
         const reviewData = await Review.create({routId, userId: user.id, text });
         const review = reviewData.get({ plain: true });
         console.log('REVIEW WAS CREATED', review);
-        // review.userName = "Какой-то автор";
         review.userName = user.name;
         res.json(review);
         } else {

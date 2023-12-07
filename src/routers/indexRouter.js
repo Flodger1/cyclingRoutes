@@ -80,7 +80,7 @@ indexRouter.get('/rout/:id', async (req, res) => {
     if (sum) {
         rate = (sum / routeRates.length).toFixed(1);        
     } else {
-        rate = ` - Ваша оценка будет первой`;
+        rate = `NEW - Ваша оценка будет первой`;
     }
     const reviewsData = await Review.findAll({where: {routId : id}, include: [{ model: User }], order: [['createdAt', 'DESC']]});
     const reviews = reviewsData.map((el)=> el.get({ plain: true }));
