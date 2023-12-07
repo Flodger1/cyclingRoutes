@@ -8,6 +8,9 @@ const Login = require('../views/Login');
 const Registration = require('../views/Registration');
 const PersonalPage = require('../views/PersonalPage');
 
+const secureRoute = require('../middleware/secureRoute');
+const isAuth = require('../middleware/isAuth');
+
 indexRouter.get('/', async (req, res) => {
   try {
     const { user } = req.session;
@@ -45,7 +48,7 @@ indexRouter.get('/', async (req, res) => {
   }
 });
 
-indexRouter.get('/profile', async (req, res) => {
+indexRouter.get('/profile', isAuth, async (req, res) => {
   const { user } = req.session;
   let usersRoutes = await Rout.findAll({
     attributes: [
@@ -76,7 +79,7 @@ indexRouter.get('/profile', async (req, res) => {
   renderTemplate(PersonalPage, { user, usersRoutes, title: user.name }, res);
 });
 
-indexRouter.get('/login', async (req, res) => {
+indexRouter.get('/login', secureRoute, async (req, res) => {
   try {
     const { user } = req.session;
     renderTemplate(Login, { user }, res);
@@ -86,7 +89,7 @@ indexRouter.get('/login', async (req, res) => {
   }
 });
 
-indexRouter.get('/registration', async (req, res) => {
+indexRouter.get('/registration', secureRoute, async (req, res) => {
   try {
     const { user } = req.session;
     renderTemplate(Registration, { user }, res);

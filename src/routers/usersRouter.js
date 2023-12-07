@@ -55,13 +55,11 @@ userRouter.post('/login', async (req, res) => {
 
 userRouter.get('/logout', (req, res) => {
   try {
-    console.log('LOGOOOUT**************');
     req.session.destroy((err) => {
       if (err) {
         console.log(err);
       } else {
         res.clearCookie('mySession');
-        console.log('SMTH***********');
         res.json({ msg: 'Success' });
       }
     });
