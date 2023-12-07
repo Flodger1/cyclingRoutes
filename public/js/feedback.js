@@ -33,7 +33,7 @@ reviewForm?.addEventListener('submit', async (event) => {
                 <p>${result.text}</p>
                 <br/>
                 <p>${result.userName}</p>
-                <div><button type='button' data-id=${result.id} class="detele-review__btn btn btn-primary">Delete my review</button></div>            
+                <div><button type='button' data-id=${result.id} class="detele-review__btn btn__my">Delete my review</button></div>            
             `;
             const info = document.querySelector('.no-reviews__not');
             info?.classList.toggle('hidden');

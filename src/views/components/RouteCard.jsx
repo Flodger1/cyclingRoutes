@@ -21,9 +21,7 @@ const RouteCard = ({ route }) => {
               ? `${Number(route.averageRating).toFixed(1)}`
               : ' NEW '}
           </p>
-          <a href={`/rout/${route.id}`} className="btn btn-primary">
-            Подробнее
-          </a>
+          <a href={`/rout/${route.id}`} ><button type="button" className="btn__my">Подробнее</button></a>
         </div>
       </div>
     </div>

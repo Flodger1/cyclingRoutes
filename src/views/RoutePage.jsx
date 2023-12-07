@@ -4,7 +4,7 @@ const Layout = require('./Layout');
 const RoutePage = ({ route, rate, reviews, user }) => (
   <Layout user={user}>
     <div className="route__wrapper">
-      <a href='/' className="tomain__btn"><button type="button" className="btn btn-primary">Назад</button></a>
+      <a href='/' className="tomain__btn"><button type="button" className="btn__my">Назад</button></a>
       <h2>{route.routName}</h2>
       <div className="rout__info">
         <div className="text__info">
@@ -16,7 +16,7 @@ const RoutePage = ({ route, rate, reviews, user }) => (
         </div>
         <div
           id="map"
-          style={{ height: '350px', width: '450px' }}
+          style={{ height: '350px', width: '550px' }}
           className="map__info"
         >
         </div>
@@ -43,7 +43,7 @@ const RoutePage = ({ route, rate, reviews, user }) => (
                 <input type="radio" name="rate" value="5" id="5" />5
               </label>
               <br />
-              <button type="submit" className="rating__btn btn btn-primary">
+              <button type="submit" className="rating__btn btn__my">
                 Оценить
               </button>
             </form>
@@ -52,13 +52,13 @@ const RoutePage = ({ route, rate, reviews, user }) => (
             <form className="review__form" data-id={`${route.id}`}>
               <h3>Оставьте отзыв:</h3>
               <textarea
-                cols="50"
+                cols="100"
                 rows="7"
                 name="text"
                 placeholder="Текст отзыва..."
               ></textarea>
               <br />
-              <button type="submit" className="review__btn btn btn-primary">
+              <button type="submit" className="review__btn btn__my">
                 Отправить отзыв
               </button>
             </form>
@@ -73,8 +73,8 @@ const RoutePage = ({ route, rate, reviews, user }) => (
             <p>{`${el.text}`}</p>
             <br />
             <p>{`${el.User.userName}`}</p>
-            {(user.id === el.userId) && (
-              <div><button type='button' data-id={`${el.id}`} className="detele-review__btn btn btn-primary">Delete my review</button></div>
+            {(user?.id === el.userId) && (
+              <div><button type='button' data-id={`${el.id}`} className="detele-review__btn btn__my">Delete my review</button></div>
             )}
           </div>
         ))) : <p className="no-reviews__not">Отзывов по этому маршруту пока нет.</p>}
