@@ -1,37 +1,92 @@
 const routeForm = document.querySelector('.route-form');
 
 async function initMap() {
-  const myLatLng = { lat: -25.363, lng: 131.044 };
-  const { Map } = await google.maps.importLibrary('maps');
-  map = new Map(document.getElementById('map'), {
+  const myLatLng = { lat: 55.7522, lng: 37.6156 };
+
+  const map = new google.maps.Map(document.getElementById('map'), {
     center: myLatLng,
     zoom: 8,
+  });
+  // Instantiate a directions service.
+  const directionsService = new google.maps.DirectionsService();
+  const directionsDisplay = new google.maps.DirectionsRenderer({
+    map: map,
   });
 
   const pointA = new google.maps.Marker({
     position: myLatLng,
-    map,
-    title: 'Hello World!',
+    title: 'point A',
+    label: 'A',
+    map: map,
     draggable: true,
   });
 
   const pointB = new google.maps.Marker({
     position: myLatLng,
-    map,
-    title: 'Hello World!',
+    title: 'point B',
+    label: 'B',
+    map: map,
     draggable: true,
   });
 
   google.maps.event.addListener(pointA, 'dragend', function (evt) {
-    document.getElementById('latitudeA').value = evt.latLng.lat();
-    document.getElementById('longitudeA').value = evt.latLng.lng();
+    document.getElementById('latitudeA').value = evt.latLng.lat() || myLatLng;
+    document.getElementById('longitudeA').value = evt.latLng.lng() || myLatLng;
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
   });
 
   google.maps.event.addListener(pointB, 'dragend', function (evt) {
-    document.getElementById('latitudeB').value = evt.latLng.lat();
-    document.getElementById('longitudeB').value = evt.latLng.lng();
-    console.log(evt);
+    document.getElementById('latitudeB').value = evt.latLng.lat() || myLatLng;
+    document.getElementById('longitudeB').value = evt.latLng.lng() || myLatLng;
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
   });
+
+  // document
+  //   .querySelector('.start-address')
+  //   .addEventListener('change', async (e) => {
+  //     const address = e.target.value.split(',')
+  //     const req = await fetch(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY`
+  //     );
+  //   });
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  const pointA = {
+    lat: Number(document.getElementById('latitudeA').value),
+    lng: Number(document.getElementById('longitudeA').value),
+  };
+  const pointB = {
+    lat: Number(document.getElementById('latitudeB').value),
+    lng: Number(document.getElementById('longitudeB').value),
+  };
+
+  directionsService.route(
+    {
+      origin: pointA,
+      destination: pointB,
+      avoidTolls: true,
+      avoidHighways: false,
+      travelMode: google.maps.TravelMode.DRIVING,
+    },
+    function (response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+        console.log(directionsDisplay.directions.routes[0]);
+        document.querySelector('.duration-time').innerText =
+          directionsDisplay.directions.routes[0].legs[0].duration.text;
+        document.querySelector('.distance').innerText =
+          directionsDisplay.directions.routes[0].legs[0].distance.text;
+
+        document.querySelector('.start-address').value =
+          directionsDisplay.directions.routes[0].legs[0].end_address;
+        document.querySelector('.end-address').value =
+          directionsDisplay.directions.routes[0].legs[0].start_address;
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    }
+  );
 }
 
 initMap();
@@ -55,11 +110,8 @@ routeForm?.addEventListener('submit', async (e) => {
     });
 
     if (response.status === 200) {
-      e.target.latitudeA.value = '';
-      e.target.longitudeA.value = '';
-      e.target.latitudeB.value = '';
-      e.target.longitudeB.value = '';
-      e.target.routName.value = '';
+      const data = await response.json();
+      window.location = `/rout/${data.id}`;
     }
   } catch (error) {
     console.error(error);
