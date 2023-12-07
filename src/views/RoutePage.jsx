@@ -27,7 +27,13 @@ const RoutePage = ({ route, rate, reviews, user }) => (
             <form className="rating__form" data-id={`${route.id}`}>
               <h3>Оцените маршрут</h3>
               <p>***** Блок со звездочками</p>
-              <label htmlFor="1">
+              <button className="star" type="radio" name="rate" value="1" id="1">&#9734;</button>
+              <button className="star" type="radio" name="rate" value="2" id="2">&#9734;</button>
+              <button className="star" type="radio" name="rate" value="3" id="3">&#9734;</button>
+              <button className="star" type="radio" name="rate" value="4" id="4">&#9734;</button>
+              <button className="star" type="radio" name="rate" value="5" id="5">&#9734;</button>
+
+              {/* <label htmlFor="1">
                 <input type="radio" name="rate" value="1" id="1" />1
               </label>
               <label htmlFor="2">
@@ -41,11 +47,12 @@ const RoutePage = ({ route, rate, reviews, user }) => (
               </label>
               <label htmlFor="5">
                 <input type="radio" name="rate" value="5" id="5" />5
-              </label>
+              </label> */}
               <br />
-              <button type="submit" className="rating__btn btn btn-primary">
+              {/* <button id="submitButton" type="submit" className="rating__btn btn btn-primary">
                 Оценить
-              </button>
+              </button> */}
+              <div className='rate__text'></div>
             </form>
           </div>
           <div className="review__block">

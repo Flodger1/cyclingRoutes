@@ -2,6 +2,8 @@ const reviewForm = document.querySelector('.review__form');
 const reviewsContainer = document.querySelector('.reviews__container');
 const infoText = document.querySelector('.info__text');
 const ratingForm = document.querySelector('.rating__form');
+const allStars = document.querySelectorAll('.star');
+const rateText = document.querySelector('.rate__text');
 
 console.log("Скрипт работает");
 
@@ -54,12 +56,50 @@ reviewForm?.addEventListener('submit', async (event) => {
     }
 });
 
+
+
+let currentRating = 0;
+
+allStars.forEach((star, i) => {
+  star.addEventListener('mouseover', function() {
+    allStars.forEach((star, j) => {
+      if (i >= j) {
+        star.innerHTML = '&#9733;';
+      } else {
+        star.innerHTML = '&#9734;';
+      }
+    });
+  });
+
+  star.addEventListener('mouseout', function() {
+    allStars.forEach((star, j) => {
+      if (currentRating >= j + 1) {
+        star.innerHTML = '&#9733;';
+      } else {
+        star.innerHTML = '&#9734;';
+      }
+    });
+  });
+
+  star.addEventListener('click', function() {
+    currentRating = i + 1;
+    allStars.forEach((star, j) => {
+      if (currentRating >= j + 1) {
+        star.innerHTML = '&#9733;';
+      } else {
+        star.innerHTML = '&#9734;';
+      }
+    });
+  });
+});
+
+
 //добавление оценки маршрута в базу
 ratingForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const {id} = event.target.dataset;
     const formData = {
-        value: event.target.rate.value,
+        value: currentRating,
         routId: id
     };
     try {
@@ -73,7 +113,8 @@ ratingForm?.addEventListener('submit', async (event) => {
         console.log(response);
         if (response.status === 200) {
             console.log("NEW RATE WAS ADDED******");
-            window.location.reload(true);
+            rateText.innerText = "Ваша оценка была успешно обработана!";
+            setTimeout(() => {window.location.reload(true)}, 2000);
         } else if (response.status === 403) {
             console.log("У пользователя недостаточно прав!");
         } 
@@ -81,3 +122,6 @@ ratingForm?.addEventListener('submit', async (event) => {
         console.error(error);    
     }
 })
+
+
+
