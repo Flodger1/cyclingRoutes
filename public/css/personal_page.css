@@ -7,7 +7,7 @@
 .main-container,
 .profile-container {
   width: 1200px;
-  height: 1000px;
+  height: 500px;
   margin: 100px;
   display: flex;
   flex-direction: row;
@@ -16,14 +16,19 @@
 }
 
 .user-routes-container {
-  background-color: black;
   width: 1200px;
-  height: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #5e788765;
+  border-radius: 20px;
 }
 
-/* .main-container {
-  display: none;
-} */
+#add-new-route,
+#change-route {
+  visibility: hidden;
+  margin-top: 50px;
+}
 
 .profile-container {
   background-color: #5e788765;
@@ -36,7 +41,8 @@
   height: 500px;
 }
 
-#add-route-btn {
+#add-route-btn,
+#update-route-btn {
   margin-top: 10px;
   border-radius: 24px;
   width: 350px;
@@ -48,6 +54,9 @@
   font-weight: bold;
 }
 
+#update-route-btn {
+  margin-left: 40px;
+}
 .route-form {
   display: flex;
   flex-direction: column;
@@ -81,4 +90,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.delete-btn,
+.update-btn,
+.more-btn {
+  background-color: #5e788765 !important;
+  border: #5e788765 !important;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.add-btn,
+.add-btn:hover {
+  background-color: white;
+  border: white;
+}
+
+.new-route {
+  visibility: hidden;
 }

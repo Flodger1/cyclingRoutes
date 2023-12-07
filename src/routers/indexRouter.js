@@ -47,7 +47,32 @@ indexRouter.get('/', async (req, res) => {
 
 indexRouter.get('/profile', async (req, res) => {
   const { user } = req.session;
-  const usersRoutes = await Rout.findAll({ where: { userId: user.id } });
+  let usersRoutes = await Rout.findAll({
+    attributes: [
+      'id',
+      'userId',
+      'routName',
+      'location',
+      'mapData',
+      'createdAt',
+      'updatedAt',
+      [Sequelize.fn('AVG', Sequelize.col('Ratings.value')), 'averageRating'],
+    ],
+    where: { userId: user.id },
+    include: [
+      {
+        model: User,
+        attributes: ['userName'],
+      },
+      {
+        model: Rating,
+        attributes: [],
+      },
+    ],
+    group: ['Rout.id', 'User.id', 'Ratings.routId'],
+    order: [[Sequelize.fn('AVG', Sequelize.col('Ratings.value')), 'DESC']],
+  });
+  usersRoutes = usersRoutes.map((el) => el.get({ plain: true }));
   renderTemplate(PersonalPage, { user, usersRoutes, title: user.name }, res);
 });
 
