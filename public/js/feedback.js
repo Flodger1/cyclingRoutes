@@ -2,6 +2,7 @@ const reviewForm = document.querySelector('.review__form');
 const reviewsContainer = document.querySelector('.reviews__container');
 const infoText = document.querySelector('.info__text');
 const ratingForm = document.querySelector('.rating__form');
+const deteleReviewBtn = document.querySelector('.detele-review__btn');
 
 console.log("Скрипт работает");
 
@@ -31,9 +32,11 @@ reviewForm?.addEventListener('submit', async (event) => {
             div.innerHTML = `
                 <p>${result.text}</p>
                 <br/>
-                <p>${result.userName}</p>            
+                <p>${result.userName}</p>
+                <div><button type='button' data-id=${result.id} class="detele-review__btn btn btn-primary">Delete my review</button></div>            
             `;
-            console.log(div);
+            const info = document.querySelector('.no-reviews__not');
+            info?.classList.toggle('hidden');
             reviewsContainer.prepend(div);
             event.target.text.value = "";
             infoText.innerText = "Благодарим за ваш отзыв!";
@@ -47,12 +50,31 @@ reviewForm?.addEventListener('submit', async (event) => {
             setTimeout(() => {
                 infoText.innerText = '';
             }, 1500)
-
         }        
     } catch (error) {
         console.error(error);        
     }
 });
+
+//удаление своего отзыва
+reviewsContainer?.addEventListener('click', async (event) => {
+    event.preventDefault();
+    if (event.target.tagName === 'BUTTON' && event.target.classList.value.includes('detele-review__btn')) {
+        const { id } = event.target.dataset;
+        try {
+            const response = await fetch(`/api/review/${id}`, {
+                method: 'DELETE',
+            });
+            if (response.status === 200) {
+                console.log("Review was deleted");
+                const review = event.target.closest('.review__item');
+                reviewsContainer.removeChild(review);
+            }            
+        } catch (error) {
+            console.log(error);            
+        }
+    }
+})
 
 //добавление оценки маршрута в базу
 ratingForm?.addEventListener('submit', async (event) => {

@@ -6,8 +6,7 @@ const RouteCard = ({ route }) => {
   //     // Логика форматирования mapData
   //     return "Map Data Placeholder";
   //   };
-  console.log(route);
-  return (
+   return (
     <div className="card m-2" style={{ width: '300px' }}>
       <div className="card-body">
         <h5 className="card-title">{route.routName}</h5>

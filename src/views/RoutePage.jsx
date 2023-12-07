@@ -66,15 +66,18 @@ const RoutePage = ({ route, rate, reviews, user }) => (
           </div>
         </div>
       )}
+      <h3>Отзывы:</h3>
       <div className="reviews__container">
-        <h3>Отзывы:</h3>
         {reviews.length ? (reviews.map((el) => (
           <div className="review__item" key={`${el.id}`}>
             <p>{`${el.text}`}</p>
             <br />
             <p>{`${el.User.userName}`}</p>
+            {(user.id === el.userId) && (
+              <div><button type='button' data-id={`${el.id}`} className="detele-review__btn btn btn-primary">Delete my review</button></div>
+            )}
           </div>
-        ))) : `Отзывов по этому маршруту пока нет.`}
+        ))) : <p className="no-reviews__not">Отзывов по этому маршруту пока нет.</p>}
         <script src="/js/feedback.js"></script>
         <script src="/js/routeMap.js"></script>
       </div>

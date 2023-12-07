@@ -24,6 +24,17 @@ reviewRouter.post('/',isAuth, async (req, res) => {
     }
 });
 
+reviewRouter.delete('/:id', isAuth, async (req, res) => {
+    const { id } = req.params;
+    try {
+        const isDeleted = await Review.destroy({where: { id }});
+        res.sendStatus(isDeleted ? 200 : 400);        
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(400);        
+    }
+})
+
 
 
 
