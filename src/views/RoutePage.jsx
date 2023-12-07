@@ -3,24 +3,22 @@ const Layout = require('./Layout');
 
 const RoutePage = ({ route, rate, reviews, user }) => (
   <Layout user={user}>
-    {/* <div id="map"></div> */}
     <div className="route__wrapper">
+      <a href='/' className="tomain__btn"><button type="button" className="btn btn-primary">Назад</button></a>
       <h2>{route.routName}</h2>
       <div className="rout__info">
         <div className="text__info">
-          <p>Населенный пункт: {`${route.location}`}</p>
-          <p>Длина маршрута: ??? км</p>
+          <p>Местоположение: {`${route.location}`}</p>
+          <p>Длина маршрута: ... км</p>
           <br />
           <p>Автор: {`${route.User.userName}`}</p>
           <p>Оценка: {`${rate}`}</p>
         </div>
-
         <div
           id="map"
-          style={{ height: '500px', width: '600px' }}
+          style={{ height: '350px', width: '450px' }}
           className="map__info"
         >
-          <img src="#" alt="тут карта"></img>
         </div>
       </div>
       {user && user.id !== route.userId && (
@@ -45,7 +43,7 @@ const RoutePage = ({ route, rate, reviews, user }) => (
                 <input type="radio" name="rate" value="5" id="5" />5
               </label>
               <br />
-              <button type="submit" className="rating__btn">
+              <button type="submit" className="rating__btn btn btn-primary">
                 Оценить
               </button>
             </form>
@@ -60,7 +58,7 @@ const RoutePage = ({ route, rate, reviews, user }) => (
                 placeholder="Текст отзыва..."
               ></textarea>
               <br />
-              <button type="submit" className="review__btn">
+              <button type="submit" className="review__btn btn btn-primary">
                 Отправить отзыв
               </button>
             </form>
@@ -69,13 +67,14 @@ const RoutePage = ({ route, rate, reviews, user }) => (
         </div>
       )}
       <div className="reviews__container">
-        {reviews.map((el) => (
+        <h3>Отзывы:</h3>
+        {reviews.length ? (reviews.map((el) => (
           <div className="review__item" key={`${el.id}`}>
             <p>{`${el.text}`}</p>
             <br />
             <p>{`${el.User.userName}`}</p>
           </div>
-        ))}
+        ))) : `Отзывов по этому маршруту пока нет.`}
         <script src="/js/feedback.js"></script>
         <script src="/js/routeMap.js"></script>
       </div>

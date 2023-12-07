@@ -13,8 +13,7 @@ reviewRouter.post('/',isAuth, async (req, res) => {
         const reviewData = await Review.create({routId, userId: user.id, text });
         const review = reviewData.get({ plain: true });
         console.log('REVIEW WAS CREATED', review);
-        // review.userName = "Какой-то автор";
-        review.userName = user.userName;
+        review.userName = user.name;
         res.json(review);
         } else {
             res.sendStatus(403);

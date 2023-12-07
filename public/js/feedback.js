@@ -53,7 +53,7 @@ reviewForm?.addEventListener('submit', async (event) => {
         console.error(error);        
     }
 });
-console.log(ratingForm)
+
 //добавление оценки маршрута в базу
 ratingForm?.addEventListener('submit', async (event) => {
     event.preventDefault();

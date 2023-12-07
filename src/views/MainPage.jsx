@@ -2,7 +2,7 @@ const React = require('react');
 const Layout = require("./Layout");
 const RouteCard = require('./components/RouteCard');
 
-const RoutesList = ({ routes, user }) => {
+const RoutesList = ({ routes, user}) => {
   return (
     <Layout user={user}>
       <h1 style={{ color: "black", textAlign: "center" }}>Велосипедные Маршруты</h1>
