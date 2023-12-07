@@ -1,9 +1,11 @@
 const React = require('react');
 const Layout = require('./Layout.jsx');
+const RouteCard2 = require('./components/RouteCard2');
 
-module.exports = function PersonalPage({ user, userRoutes, title }) {
+module.exports = function PersonalPage({ user, usersRoutes, title }) {
   return (
     <Layout user={user} title={title}>
+      <link rel="stylesheet" href="/css/personal_page.css" />
       <div className="profile-container">
         <div className="profile-info">
           <svg
@@ -22,7 +24,11 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
               {user ? user.email : 'None'}
             </h6>
             <span>
-              <button className="add-btn"> add new route</button>
+              <button className="add-btn btn btn-primary">
+                <a href="#add-new-route" className="add-btn">
+                  Добавить маршрут
+                </a>
+              </button>
             </span>
           </div>
         </div>
@@ -30,15 +36,28 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
           <h1>372 KM</h1>
           <span>was traveled</span>
           <br />
-          <h2>0</h2>
+          <h2>{usersRoutes ? usersRoutes.length : 0}</h2>
           <span>routes were added</span>
           <h2>0</h2>
           <span>liked routes</span>
         </div>
       </div>
+      <h3>Добавленные Вами маршруты: </h3>
+      <div className="user-routes-container">
+        {usersRoutes ? (
+          usersRoutes.map((route) => <RouteCard2 route={route} user={user} />)
+        ) : (
+          <h2 className="card-title text-center">
+            Вы не добавли ни одного маршрута
+          </h2>
+        )}
+      </div>
+      <br />
+      <br />
+      <br />
 
-      <div className="user-routes-container"></div>
-      <div className="main-container">
+      <h3 className="new-route">Добавить новый маршрут: </h3>
+      <div className="main-container" id="add-new-route">
         <div className="row" id="map"></div>
         <form className="row g-3 route-form">
           <div className="row">
@@ -144,8 +163,84 @@ module.exports = function PersonalPage({ user, userRoutes, title }) {
           </div>
         </form>
       </div>
+
+      <div className="main-container" id="change-route">
+        <div className="row" id="map"></div>
+        <form className="row g-3 route-form">
+          <div className="row">
+            <div className="col">
+              <span>Название</span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Название"
+                name="routName"
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <span>Откуда</span>
+            <div className="col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Долгота"
+                name="Longitude"
+                id="longitudeA"
+                readOnly
+              />
+            </div>
+            <div className="col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Широта"
+                name="latitude"
+                id="latitudeA"
+                readOnly
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <span>Куда</span>
+            <div className="col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Долгота"
+                name="longitude"
+                id="longitudeB"
+                readOnly
+              />
+            </div>
+            <br /> <br />
+            <div className="col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Широта"
+                name="latitude"
+                id="latitudeB"
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <button
+              type="submit"
+              className="btn btn-primary mb-3"
+              id="update-route-btn"
+            >
+              Изменить маршрут
+            </button>
+          </div>
+        </form>
+      </div>
       <script src="/js/map.js"></script>
       <script src="/js/newroute.js"></script>
+      <script src="/js/changeroutes.js"></script>
     </Layout>
   );
 };

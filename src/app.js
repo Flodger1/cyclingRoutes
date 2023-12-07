@@ -22,7 +22,7 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 10 * 60 * 1000, // устанавливаем сколько живет кука
+    maxAge: 10 * 60 * 60 * 1000, // устанавливаем сколько живет кука
     httpOnly: true,
   },
 };
@@ -40,7 +40,6 @@ app.use('/', indexRouter);
 app.get('/*', (req, res) => {
   res.redirect('/');
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

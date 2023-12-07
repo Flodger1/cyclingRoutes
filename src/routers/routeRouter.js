@@ -14,13 +14,14 @@ routeRouter.post('/', async (req, res) => {
   }
 });
 
-routeRouter.get('/:id', async (req, res) => {
+routeRouter.delete('/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const route = await Rout.findOne({ where: { id } });
-    res.json(route);
+    const isDeleted = await Rout.destroy({ where: { id } });
+    res.json(isDeleted);
   } catch (error) {
     res.sendStatus(500);
   }
 });
+
 module.exports = routeRouter;
